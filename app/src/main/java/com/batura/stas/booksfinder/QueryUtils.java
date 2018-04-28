@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by HOME on 26.04.2018.
@@ -96,7 +97,7 @@ public final class QueryUtils {
         return output.toString();
     }
 
-    public static void fetchBooksData(String requestUrl) {
+    public static List<Book> fetchBooksData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -108,9 +109,10 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
-        extractDataFromJsonResponse(jsonResponse);
+        List<Book> currentList = extractDataFromJsonResponse(jsonResponse);
 
         // Extract relevant fields from the JSON response and create an {@link Event} object
+        return(currentList);
     }
 
     public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse) {
