@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOG_TAG = MainActivity.class.getName();
 
     private static final String BOOKS_REQUEST_URL =
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2016-01-01&endtime=2016-05-02&minfelt=50&minmagnitude=5";
+            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

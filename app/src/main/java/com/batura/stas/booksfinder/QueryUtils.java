@@ -3,6 +3,10 @@ package com.batura.stas.booksfinder;
 import android.app.Activity;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 /**
  * Created by HOME on 26.04.2018.
@@ -103,7 +108,57 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
+        extractDataFromJsonResponse(jsonResponse);
+
         // Extract relevant fields from the JSON response and create an {@link Event} object
+    }
+
+    public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse) {
+
+        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
+        // is formatted, a JSONException exception object will be thrown.
+        // Catch the exception so the app doesn't crash, and print the error message to the logs.
+
+        ArrayList<Book> books = new ArrayList<>();
+
+        try {
+
+            // Create a JSONObject from the SAMPLE_JSON_RESPONSE string
+            JSONObject baseJsonResponse = new JSONObject(jsonResponse);
+
+            // Extract the JSONArray associated with the key called "items",
+            // which represents a list of features (or earthquakes).
+            JSONArray bookArray = baseJsonResponse.getJSONArray("items");
+
+            // For each earthquake in the bookArray, create an {@link Earthquake} object
+            for (int i = 0; i < bookArray.length(); i++) {
+
+                // Get a single earthquake at position i within the list of earthquakes
+                JSONObject currentBook = bookArray.getJSONObject(i);
+
+                // For a given earthquake, extract the JSONObject associated with the
+                // key called "volumeInfo", which represents a list of all properties
+                // for that earthquake.
+                JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
+
+                String author = volumeInfo.getString("authors");
+
+                String title = volumeInfo.getString("title");
+
+                String description = volumeInfo.getString("description");
+
+                books.add(new Book(author,title,description));
+
+               }
+
+        } catch (JSONException e) {
+            // If an error is thrown when executing any of the above statements in the "try" block,
+            // catch the exception here, so the app doesn't crash. Print a log message
+            // with the message from the exception.
+            Log.e("QueryUtils", "Problem parsing the books JSON results", e);
+        }
+        return (books);
+
     }
 
 }
