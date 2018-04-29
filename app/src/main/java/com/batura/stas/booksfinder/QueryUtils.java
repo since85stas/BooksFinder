@@ -115,7 +115,7 @@ public final class QueryUtils {
         return(currentList);
     }
 
-    public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse) {
+    public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse)  {
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -148,6 +148,14 @@ public final class QueryUtils {
                 String title = volumeInfo.getString("title");
 
                 String description = volumeInfo.getString("description");
+
+                JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+                String smallThumbnail = imageLinks.getString("smallThumbnail");
+
+                JSONObject salesInfo = currentBook.getJSONObject("saleInfo");
+                JSONObject listPrice = salesInfo.getJSONObject("listPrice");
+                String price = listPrice.getString("amount");
+                String currency = listPrice.getString("currencyCode");
 
                 books.add(new Book(author,title,description));
 

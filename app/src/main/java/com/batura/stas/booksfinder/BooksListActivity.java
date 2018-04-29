@@ -18,7 +18,7 @@ public class BooksListActivity extends AppCompatActivity {
     private BooksAdapter mAdapter;
 
     private static final String BOOKS_REQUEST_URL =
-            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
+            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=3";
 
 
 
