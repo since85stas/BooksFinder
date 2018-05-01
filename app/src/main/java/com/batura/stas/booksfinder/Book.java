@@ -5,10 +5,16 @@ package com.batura.stas.booksfinder;
  */
 
 public class Book {
+
+
     //Class for storing information about book
+    private String mImage;
     private String mAuthor;
     private String mDescription;
     private String mTitle;
+
+    public String getImage() { return mImage;
+    }
 
     public String getAuthor() {
         return mAuthor;
@@ -23,7 +29,8 @@ public class Book {
     }
 
 
-    public Book (String author, String description, String title ) {
+    public Book (String image,String author, String description, String title ) {
+        mImage = image;
         mAuthor = author;
         mDescription = description;
         mTitle = title;

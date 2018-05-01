@@ -14,10 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     public static final String LOG_TAG = MainActivity.class.getName();
-
 
 
     @Override

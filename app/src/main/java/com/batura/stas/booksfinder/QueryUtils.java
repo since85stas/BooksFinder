@@ -1,7 +1,13 @@
 package com.batura.stas.booksfinder;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,9 +28,12 @@ import java.util.List;
  * Created by HOME on 26.04.2018.
  */
 
-public final class QueryUtils {
+public final class QueryUtils implements LoadImageTask.Listener{
     private QueryUtils () {
     }
+    private ImageView mImageView;
+
+    private Bitmap mBitmap;
 
     public static final String LOG_TAG = QueryUtils.class.getName();
 
@@ -115,7 +124,7 @@ public final class QueryUtils {
         return(currentList);
     }
 
-    public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse)  {
+    public static ArrayList<Book>  extractDataFromJsonResponse (String jsonResponse)   {
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -147,17 +156,39 @@ public final class QueryUtils {
 
                 String title = volumeInfo.getString("title");
 
-                String description = volumeInfo.getString("description");
+                String description;
+                if (volumeInfo.has("description")) {
+                    description = volumeInfo.optString("description");
+                }
+                else {
+                    description = "No decription";
+                }
 
-                JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
-                String smallThumbnail = imageLinks.getString("smallThumbnail");
+                String imagePreview;
+                Image image;
+                if (volumeInfo.has("imageLinks")) {
+                    JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+                    imagePreview = imageLinks.getString("smallThumbnail");
+                    //image = Picasso.get().load(imagePreview);
+                }
+                else {
+                    imagePreview = "No cover";
+                }
 
                 JSONObject salesInfo = currentBook.getJSONObject("saleInfo");
-                JSONObject listPrice = salesInfo.getJSONObject("listPrice");
-                String price = listPrice.getString("amount");
-                String currency = listPrice.getString("currencyCode");
+                String price;
+                String currency;
+                if (salesInfo.has("listPrice")) {
+                    JSONObject listPrice = salesInfo.getJSONObject("listPrice");
+                    price = listPrice.getString("amount");
+                    currency = listPrice.getString("currencyCode");
+                }
+                else {
+                    price = "N/A";
+                    currency = "";
+                }
 
-                books.add(new Book(author,title,description));
+                books.add(new Book(imagePreview,author,title,description));
 
                }
 
@@ -171,4 +202,15 @@ public final class QueryUtils {
 
     }
 
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+
+        mBitmap = bitmap;
+        //mImageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void onError() {
+        //Toast.makeText(this, "Error Loading Image !", Toast.LENGTH_SHORT).show();
+    }
 }
