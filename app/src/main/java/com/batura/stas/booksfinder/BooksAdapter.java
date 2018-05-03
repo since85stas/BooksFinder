@@ -41,15 +41,23 @@ public class BooksAdapter extends ArrayAdapter<Book> {
         Picasso.get().load(currentBook.getImage()).into(coverView);
 
         TextView authorTextView = (TextView)listItemView.findViewById(R.id.autor_text);
-        authorTextView.setText(currentBook.getAuthor());
+        authorTextView.setText(formatAuthor(currentBook.getAuthor()));
 
         TextView titleTextView = (TextView)listItemView.findViewById(R.id.title_text);
         titleTextView.setText(currentBook.getTitle());
 
-        TextView descrTextView = (TextView)listItemView.findViewById(R.id.description_text);
-        descrTextView.setText(currentBook.getDescription());
+        //TextView descrTextView = (TextView)listItemView.findViewById(R.id.description_text);
+        //descrTextView.setText(currentBook.getDescription());
 
 
         return listItemView;
     }
+
+    private String formatAuthor (String string) {
+        string = string.substring(2,string.length()-2);
+
+        return(string);
+    }
 }
+
+

@@ -168,7 +168,7 @@ public final class QueryUtils implements LoadImageTask.Listener{
                 Image image;
                 if (volumeInfo.has("imageLinks")) {
                     JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
-                    imagePreview = imageLinks.getString("smallThumbnail");
+                    imagePreview = imageLinks.getString("thumbnail");
                     //image = Picasso.get().load(imagePreview);
                 }
                 else {

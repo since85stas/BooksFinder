@@ -28,8 +28,7 @@ public class Book {
         return mTitle;
     }
 
-
-    public Book (String image,String author, String description, String title ) {
+    public Book (String image,String author,  String title,String description ) {
         mImage = image;
         mAuthor = author;
         mDescription = description;
