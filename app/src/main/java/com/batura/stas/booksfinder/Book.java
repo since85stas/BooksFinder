@@ -13,6 +13,10 @@ public class Book {
     private String mDescription;
     private String mTitle;
 
+
+
+    private String mDate;
+
     public String getImage() { return mImage;
     }
 
@@ -28,11 +32,15 @@ public class Book {
         return mTitle;
     }
 
-    public Book (String image,String author,  String title,String description ) {
+    public String getDate() { return mDate;
+    }
+
+    public Book (String image,String author,  String title,String description,String date ) {
         mImage = image;
         mAuthor = author;
         mDescription = description;
         mTitle = title;
+        mDate = date;
     }
 
 

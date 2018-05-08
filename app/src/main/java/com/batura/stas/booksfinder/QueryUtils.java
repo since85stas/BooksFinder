@@ -156,6 +156,14 @@ public final class QueryUtils implements LoadImageTask.Listener{
 
                 String title = volumeInfo.getString("title");
 
+                String date;
+                if(volumeInfo.has("publishedDate")){
+                    date  = volumeInfo.getString("publishedDate");
+                }
+                else {
+                    date = "No Date found";
+                }
+
                 String description;
                 if (volumeInfo.has("description")) {
                     description = volumeInfo.optString("description");
@@ -187,8 +195,7 @@ public final class QueryUtils implements LoadImageTask.Listener{
                     price = "N/A";
                     currency = "";
                 }
-
-                books.add(new Book(imagePreview,author,title,description));
+                books.add(new Book(imagePreview,author,title,description,date));
 
                }
 
@@ -199,7 +206,6 @@ public final class QueryUtils implements LoadImageTask.Listener{
             Log.e("QueryUtils", "Problem parsing the books JSON results", e);
         }
         return (books);
-
     }
 
     @Override
