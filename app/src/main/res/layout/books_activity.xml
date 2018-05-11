@@ -15,7 +15,6 @@
         android:id="@+id/empty_state"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="No books found"
         android:gravity="center"/>
     <ProgressBar
         android:id="@+id/loading_bar"

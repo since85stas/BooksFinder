@@ -35,7 +35,8 @@ public class BooksListActivity extends AppCompatActivity  {
     private static final String BOOKS_REQUEST_URL_1 =
             "https://www.googleapis.com/books/v1/volumes?q=";
 
-    private static final String BOOKS_REQUEST_URL_2 = "&maxResults=3";
+    private static final String BOOKS_REQUEST_URL_2 = "&maxResults=10&orderBy=newest";
+    private static final String BOOKS_LANG_REQUEST  = "&langRestrict=";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +46,12 @@ public class BooksListActivity extends AppCompatActivity  {
 
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        mEmptyTextView = (TextView) findViewById(R.id.empty_state);
 
         if(networkInfo != null && networkInfo.isConnected() ) {
             String keyWordString = getIntent().getExtras().getString("keyWord");
-            String books_request_url = BOOKS_REQUEST_URL_1 + keyWordString + BOOKS_REQUEST_URL_2;
-
+            String langWordString = getIntent().getExtras().getString("language");
+            String books_request_url = BOOKS_REQUEST_URL_1 + keyWordString + BOOKS_REQUEST_URL_2+BOOKS_LANG_REQUEST+langWordString;
             BooksAsyncClass booksAsyncClass = new BooksAsyncClass();
             booksAsyncClass.execute(books_request_url);
             ListView booksListView = (ListView) findViewById(R.id.list);
@@ -73,7 +75,7 @@ public class BooksListActivity extends AppCompatActivity  {
         }
         else {
             ListView booksListView = (ListView) findViewById(R.id.list);
-            mEmptyTextView = (TextView) findViewById(R.id.empty_state);
+
             mEmptyTextView.setText("No internet connectivity");
             booksListView.setEmptyView(mEmptyTextView);
         }
@@ -99,10 +101,13 @@ public class BooksListActivity extends AppCompatActivity  {
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.loading_bar);
             progressBar.setVisibility(View.GONE);
             mAdapter.clear();
-            mEmptyTextView.setText("No books");
+
 
             if (data != null && !data.isEmpty()) {
                 mAdapter.addAll(data);
+            }
+            else {
+                mEmptyTextView.setText("No books");
             }
         }
     }
