@@ -2,7 +2,7 @@
     <string name="app_name">BooksFinder</string>
     <string name="findTextHint">Enter key word</string >
     <string name="searchButton">Search books</string>
-    <string name="langTextView">Select language</string>
+    <string name="langTextView">Select language:</string>
 
     <string-array name="languages">
         <item>Russian</item>
@@ -22,11 +22,13 @@
     </string-array>
 
     <string-array name="findIn">
+        <item>No restriction</item>
         <item>Author</item>
         <item>Title</item>
         <item>Subject</item>
     </string-array>
     <string-array name="findInId">
+        <item></item>
         <item>inauthor:</item>
         <item>intitle:</item>
         <item>subject:</item>
@@ -40,5 +42,10 @@
         <item>relevance</item>
         <item>newest</item>
     </string-array>
+
+    <string name="About">This is test project for appling google books API in the aplication. So do not judge me strictly. Later i am trying to add more fuctions.
+        And may be some one can find it useful. Read books. Peace.\n\n Program my: Batura Stas.
+             </string>
+
 
 </resources>

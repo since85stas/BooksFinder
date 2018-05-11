@@ -54,7 +54,7 @@ public class BooksListActivity extends AppCompatActivity  {
             String findWordString = getIntent().getExtras().getString("findIn");
             String sortedWordString = getIntent().getExtras().getString("sorted");
 
-            String books_request_url = BOOKS_REQUEST_URL_1+findWordString + keyWordString;
+            String books_request_url = BOOKS_REQUEST_URL_1 +findWordString + keyWordString;
             books_request_url = books_request_url + BOOKS_REQUEST_URL_2 + BOOKS_LANG_REQUEST+langWordString+"&"+sortedWordString;
             BooksAsyncClass booksAsyncClass = new BooksAsyncClass();
             booksAsyncClass.execute(books_request_url);
