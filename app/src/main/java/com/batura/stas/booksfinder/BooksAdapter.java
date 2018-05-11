@@ -48,7 +48,7 @@ public class BooksAdapter extends ArrayAdapter<Book> {
 
     private String formatAuthor (String name,String date ) {
         name = name.substring(2,name.length()-2);
-        date = date.substring(0,3);
+        date = date.substring(0,4);
         String fullString = name + ", " + date;
         return(fullString);
     }

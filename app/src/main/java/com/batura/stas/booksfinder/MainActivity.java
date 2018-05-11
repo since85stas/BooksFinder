@@ -34,13 +34,20 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(adapter);
-        //String langSelectedStr = languageSpinner.getSelectedItem().toString();
+
+        final Spinner findInSpinner =(Spinner)findViewById(R.id.findInSpinner);
+        ArrayAdapter<?> findAdapter =
+                ArrayAdapter.createFromResource(this, R.array.findIn, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        findInSpinner.setAdapter(findAdapter);
+
 
         Button searchButton = (Button)findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final int langSelectedInt    = languageSpinner.getSelectedItemPosition();
+                final int findInSelectedInt    = findInSpinner.getSelectedItemPosition();
                 EditText keyWord = (EditText) findViewById(R.id.editText);
                 if (keyWord.getText().length() != 0) {
                     String keyWordString = keyWord.getText().toString();
@@ -48,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("keyWord",keyWordString );
                     String[] languagesIdArray = getResources().getStringArray(R.array.languagesId);
                     intent.putExtra("language",languagesIdArray[langSelectedInt]);
+                    String[] findInIdArray = getResources().getStringArray(R.array.findInId);
+                    intent.putExtra("findIn",findInIdArray[findInSelectedInt]);
                     startActivity(intent);
                 }
                 else {

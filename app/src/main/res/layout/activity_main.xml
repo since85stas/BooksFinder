@@ -49,8 +49,24 @@
                 style="@style/spinnerBaseStyle"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Find in:"
+                style="@style/spinnerBaseStyle" />
+            <Spinner
+                android:id="@+id/findInSpinner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                style="@style/spinnerBaseStyle"/>
+        </LinearLayout>
 
-    <LinearLayout
+
+         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -58,7 +74,7 @@
             android:layout_width="100dp"
             android:text="Find in:"
             style="@style/spinnerBaseStyle" />
-        <RadioGroup
+            <RadioGroup
             android:id="@+id/RadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,8 +94,8 @@
                 android:id="@+id/titleRadioButton"
                 style="@style/spinnerBaseStyle"
                 android:text="Title"   />
-        </RadioGroup>
-    </LinearLayout>
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -20,4 +20,15 @@
         <item>de</item>
         <item>it</item>
     </string-array>
+
+    <string-array name="findIn">
+        <item>Author</item>
+        <item>Title</item>
+        <item>Subject</item>
+    </string-array>
+    <string-array name="findInId">
+        <item>author</item>
+        <item>title</item>
+        <item>subject</item>
+    </string-array>
 </resources>

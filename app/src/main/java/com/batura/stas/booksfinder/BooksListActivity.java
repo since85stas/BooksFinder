@@ -51,7 +51,10 @@ public class BooksListActivity extends AppCompatActivity  {
         if(networkInfo != null && networkInfo.isConnected() ) {
             String keyWordString = getIntent().getExtras().getString("keyWord");
             String langWordString = getIntent().getExtras().getString("language");
-            String books_request_url = BOOKS_REQUEST_URL_1 + keyWordString + BOOKS_REQUEST_URL_2+BOOKS_LANG_REQUEST+langWordString;
+            String findWordString = getIntent().getExtras().getString("findIn");
+
+            String books_request_url = BOOKS_REQUEST_URL_1 + keyWordString +"+"+findWordString; //+ BOOKS_REQUEST_URL_2+BOOKS_LANG_REQUEST+langWordString;
+            books_request_url = books_request_url + BOOKS_REQUEST_URL_2 + BOOKS_LANG_REQUEST+langWordString;
             BooksAsyncClass booksAsyncClass = new BooksAsyncClass();
             booksAsyncClass.execute(books_request_url);
             ListView booksListView = (ListView) findViewById(R.id.list);
