@@ -31,15 +31,21 @@ public class MainActivity extends AppCompatActivity {
 
         final Spinner languageSpinner =(Spinner)findViewById(R.id.languageSpinner);
         ArrayAdapter<?> adapter =
-                ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ArrayAdapter.createFromResource(this, R.array.languages, R.layout.spinner);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         languageSpinner.setAdapter(adapter);
 
         final Spinner findInSpinner =(Spinner)findViewById(R.id.findInSpinner);
         ArrayAdapter<?> findAdapter =
-                ArrayAdapter.createFromResource(this, R.array.findIn, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ArrayAdapter.createFromResource(this, R.array.findIn,R.layout.spinner);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         findInSpinner.setAdapter(findAdapter);
+
+        final Spinner sortSpinner =(Spinner)findViewById(R.id.sortedSpinner);
+        ArrayAdapter<?> sortAdapter =
+                ArrayAdapter.createFromResource(this, R.array.sorted, R.layout.spinner);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        sortSpinner.setAdapter(sortAdapter);
 
 
         Button searchButton = (Button)findViewById(R.id.searchButton);
@@ -48,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final int langSelectedInt    = languageSpinner.getSelectedItemPosition();
                 final int findInSelectedInt    = findInSpinner.getSelectedItemPosition();
+                final int sortedSelectedInt    = sortSpinner.getSelectedItemPosition();
+
                 EditText keyWord = (EditText) findViewById(R.id.editText);
                 if (keyWord.getText().length() != 0) {
                     String keyWordString = keyWord.getText().toString();
@@ -57,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("language",languagesIdArray[langSelectedInt]);
                     String[] findInIdArray = getResources().getStringArray(R.array.findInId);
                     intent.putExtra("findIn",findInIdArray[findInSelectedInt]);
+                    startActivity(intent);
+                    String[] sortedArray = getResources().getStringArray(R.array.sortedId);
+                    intent.putExtra("sorted",sortedArray[sortedSelectedInt]);
                     startActivity(intent);
                 }
                 else {

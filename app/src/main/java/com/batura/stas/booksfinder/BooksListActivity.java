@@ -35,7 +35,7 @@ public class BooksListActivity extends AppCompatActivity  {
     private static final String BOOKS_REQUEST_URL_1 =
             "https://www.googleapis.com/books/v1/volumes?q=";
 
-    private static final String BOOKS_REQUEST_URL_2 = "&maxResults=10&orderBy=newest";
+    private static final String BOOKS_REQUEST_URL_2 = "&maxResults=40";
     private static final String BOOKS_LANG_REQUEST  = "&langRestrict=";
 
     @Override
@@ -52,9 +52,10 @@ public class BooksListActivity extends AppCompatActivity  {
             String keyWordString = getIntent().getExtras().getString("keyWord");
             String langWordString = getIntent().getExtras().getString("language");
             String findWordString = getIntent().getExtras().getString("findIn");
+            String sortedWordString = getIntent().getExtras().getString("sorted");
 
-            String books_request_url = BOOKS_REQUEST_URL_1 + keyWordString +"+"+findWordString; //+ BOOKS_REQUEST_URL_2+BOOKS_LANG_REQUEST+langWordString;
-            books_request_url = books_request_url + BOOKS_REQUEST_URL_2 + BOOKS_LANG_REQUEST+langWordString;
+            String books_request_url = BOOKS_REQUEST_URL_1+findWordString + keyWordString;
+            books_request_url = books_request_url + BOOKS_REQUEST_URL_2 + BOOKS_LANG_REQUEST+langWordString+"&"+sortedWordString;
             BooksAsyncClass booksAsyncClass = new BooksAsyncClass();
             booksAsyncClass.execute(books_request_url);
             ListView booksListView = (ListView) findViewById(R.id.list);

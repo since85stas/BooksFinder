@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BooksFinder</string>
     <string name="findTextHint">Enter key word</string >
-    <string name="searchButton">Search</string>
+    <string name="searchButton">Search books</string>
     <string name="langTextView">Select language</string>
 
     <string-array name="languages">
@@ -27,8 +27,18 @@
         <item>Subject</item>
     </string-array>
     <string-array name="findInId">
-        <item>author</item>
-        <item>title</item>
-        <item>subject</item>
+        <item>inauthor:</item>
+        <item>intitle:</item>
+        <item>subject:</item>
     </string-array>
+
+    <string-array name="sorted">
+        <item>Relevance</item>
+        <item>Newest</item>
+    </string-array>
+    <string-array name="sortedId">
+        <item>relevance</item>
+        <item>newest</item>
+    </string-array>
+
 </resources>

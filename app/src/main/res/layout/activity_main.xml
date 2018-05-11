@@ -11,42 +11,74 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="41dp"
         android:hint="@string/findTextHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="@string/searchButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="57dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
+                style="@style/spinnerBaseStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="@string/langTextView"
-                style="@style/spinnerBaseStyle" />
+                android:text="@string/langTextView" />
             <Spinner
                 android:id="@+id/languageSpinner"
+                style="@style/spinnerBaseStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/spinnerBaseStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                style="@style/spinnerBaseStyle"/>
+                android:text="Find in:" />
+            <Spinner
+                android:id="@+id/findInSpinner"
+                style="@style/spinnerBaseStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,50 +86,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                style="@style/spinnerBaseStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Find in:"
-                style="@style/spinnerBaseStyle" />
+                android:text="Sorted by:" />
             <Spinner
-                android:id="@+id/findInSpinner"
+                android:id="@+id/sortedSpinner"
+                style="@style/spinnerBaseStyle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                style="@style/spinnerBaseStyle"/>
+                android:layout_weight="1" />
         </LinearLayout>
 
-
-         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:text="Find in:"
-            style="@style/spinnerBaseStyle" />
-            <RadioGroup
-            android:id="@+id/RadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checkedButton="@+id/pressureRadioButton"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:id="@+id/authorRadioButton"
-                style="@style/spinnerBaseStyle"
-                android:text="Author"  />
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:id="@+id/titleRadioButton"
-                style="@style/spinnerBaseStyle"
-                android:text="Title"   />
-            </RadioGroup>
-        </LinearLayout>
     </LinearLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>

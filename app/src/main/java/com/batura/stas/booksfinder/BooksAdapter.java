@@ -35,8 +35,13 @@ public class BooksAdapter extends ArrayAdapter<Book> {
                     R.layout.books_list_item, parent, false);
         }
         Book currentBook = getItem(position);
-        ImageView coverView = (ImageView)listItemView.findViewById(R.id.preview_image_view);
-        Picasso.get().load(currentBook.getImage()).into(coverView);
+        ImageView coverView = (ImageView) listItemView.findViewById(R.id.preview_image_view);
+        if (currentBook.getImage() == "No cover") {
+            coverView.setImageResource(R.drawable.no_book_cover);
+        }
+        else {
+            Picasso.get().load(currentBook.getImage()).into(coverView);
+        }
         TextView authorTextView = (TextView)listItemView.findViewById(R.id.autor_text);
         authorTextView.setText(formatAuthor(currentBook.getAuthor(),currentBook.getDate()));
         TextView titleTextView = (TextView)listItemView.findViewById(R.id.title_text);
